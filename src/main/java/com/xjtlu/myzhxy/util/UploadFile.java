@@ -1,10 +1,16 @@
 package com.xjtlu.myzhxy.util;
 
+import com.qiniu.common.QiniuException;
+import com.qiniu.http.Response;
+import com.qiniu.storage.Configuration;
+import com.qiniu.storage.UploadManager;
+import com.qiniu.util.Auth;
 import org.apache.commons.io.filefilter.SuffixFileFilter;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -90,5 +96,18 @@ public class UploadFile {
             upload_result.put("msg", "头像上传失败! 未找到指定图片!");
         }
         return upload_result;
+    }
+
+    public static void testUpload(String fileName, InputStream input) throws QiniuException {
+        String accessKey = "fsflNtY_jkOWRChdbkfcvGNbd1QZVyMJ6r-Wy_21";
+        String secretKey = "DsMkh0FtfwQsnncuXR_J1m4LAVyS1ek0k-ksphXL";
+        String bucketName = "cpt402";
+        Configuration cfg = new Configuration();
+        UploadManager uploadManager = new UploadManager(cfg);
+        Auth auth = Auth.create(accessKey, secretKey);
+        String token = auth.uploadToken(bucketName);
+        String key = fileName;
+        Response r = uploadManager.put(input, key, token,null,null);
+
     }
 }

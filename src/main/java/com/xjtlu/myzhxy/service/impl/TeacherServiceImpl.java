@@ -48,4 +48,13 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
         baseMapper.deleteBatchIds(ids);
     }
 
+    @Override
+    public Teacher getAllByClazzNameAndId(String clazzName, String id) {
+        QueryWrapper<Teacher> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("clazz_name", clazzName);
+        queryWrapper.eq("id", id);
+
+        return this.getOne(queryWrapper);
+    }
+
 }

@@ -16,4 +16,6 @@ public interface TeacherService extends IService<Teacher> {
     IPage<Teacher> getTeacher(IPage<Teacher> page, String teacherName);
 
     void deleteTeacher(List<Integer> ids);
+
+    Teacher getAllByClazzNameAndId(String clazzName, String id);
 }

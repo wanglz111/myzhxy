@@ -149,7 +149,6 @@ public class SystemController {
         catch (IOException e){
             e.printStackTrace();
         }
-
     }
 
     @PostMapping("/headerImgUpload")
@@ -160,10 +159,12 @@ public class SystemController {
         String newFileName = uuid.concat(fileName.substring(indexSuffix));
 
         // 保存文件发送到第三方，或独立的图片服务器
-        String filePath = "/Users/wangluzhi/Luzhi/myzhxy/target/classes/static/images/" + newFileName;
-        file.transferTo(new File(filePath));
-        String path = "/images/" + newFileName;
-        return Result.ok(path);
+//        String filePath = "/Users/wangluzhi/Luzhi/myzhxy/target/classes/static/images/" + newFileName;
+//        file.transferTo(new File(filePath));
+//        String path = "/images/" + newFileName;
+        UploadFile.testUpload(newFileName, file.getInputStream());
+
+        return Result.ok();
     }
 
     @PostMapping("/updatePwd/{lastPwd}/{newPwd}")
