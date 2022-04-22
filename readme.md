@@ -4,4 +4,4 @@
 
 [尚硅谷视频地址](https://www.bilibili.com/video/BV1AY4y1v7Xe?p)
 
-[x] 全部完成
+- [x] 全部完成
